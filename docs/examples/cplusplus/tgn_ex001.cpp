@@ -61,7 +61,7 @@ int main() {
   SX g = x(0) * x(0) + x(1) * x(1);
 
   // Initial guess and bounds for the optimization variables
-  vector<double> x0 = {0.0, 0.0};
+  vector<double> x0  = {0.0, 0.0};
   vector<double> lbx = {-inf, -inf};
   vector<double> ubx = {inf, inf};
 
@@ -81,8 +81,8 @@ int main() {
   arg["ubx"] = ubx;
   arg["lbg"] = lbg;
   arg["ubg"] = ubg;
-  arg["x0"] = x0;
-  res = solver(arg);
+  arg["x0"]  = x0;
+  res        = solver(arg);
 
   // Print the solution
   cout << "-----" << endl;
