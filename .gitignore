@@ -9,6 +9,27 @@ obj-x86_64-linux-gnu
 *.orig
 *.swp
 
+# tgn
+*.o
+*.aux
+*.log
+*.pdf
+*.make
+*.cmake
+*.internal
+*.includecache
+CMake*.cpp
+*.check_cache
+*.bin
+*.marks
+a.out
+link.txt
+Makefile
+Makefile2
+CMakeCache.txt
+docs/examples/cplusplus/*
+docs/examples/CMakeFiles/*
+
 test/python/*.c
 
 # documentation
