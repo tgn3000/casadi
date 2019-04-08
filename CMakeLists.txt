@@ -1,5 +1,6 @@
 cmake_minimum_required(VERSION 2.8.6)
 project(casadi C CXX)
+set(CMAKE_CXX_STANDARD 11)
 
 set(CASADI_MAJOR_VERSION 3)
 set(CASADI_MINOR_VERSION 4)
