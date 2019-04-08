@@ -142,3 +142,9 @@ endif()
 # DaeBuilder
 add_executable(daebuilder daebuilder.cpp)
 target_link_libraries(daebuilder casadi)
+
+# TGN examples
+if(WITH_IPOPT)
+  add_executable(tgn_ex001 tgn_ex001.cpp)
+  target_link_libraries(tgn_ex001 casadi)
+endif()

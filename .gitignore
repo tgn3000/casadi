@@ -28,6 +28,7 @@ Makefile
 Makefile2
 CMakeCache.txt
 docs/examples/cplusplus/*
+!docs/examples/cplusplus/*.cpp
 docs/examples/CMakeFiles/*
 
 test/python/*.c
