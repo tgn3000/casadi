@@ -44,7 +44,7 @@ int main(){
   /** Test problem (Ganesh & Biegler, A reduced Hessian strategy for sensitivity analysis of optimal flowsheets, AIChE 33, 1987, pp. 282-296)
    *
    *    min     x1^2 + x2^2 + x3^2
-   *    s.t.    6*x1 + 3&x2 + 2*x3 - pi = 0
+   *    s.t.    6*x1 + 3*x2 + 2*x3 - pi = 0
    *            p2*x1 + x2 - x3 - 1 = 0
    *            x1, x2, x3 >= 0
    *
