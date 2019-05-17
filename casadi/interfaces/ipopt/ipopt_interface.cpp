@@ -292,10 +292,14 @@ namespace casadi {
     // Set work in base classes
     Nlpsol::set_work(mem, arg, res, iw, w);
 
-    // Work vectors
+    /* Work vectors */
+    // inequality constraints
     m->gk = w; w += ng_;
+    // gradient of f
     m->grad_fk = w; w += nx_;
+    // jacobian of g
     m->jac_gk = w; w += jacg_sp_.nnz();
+    // hessian
     if (exact_hessian_) {
       m->hess_lk = w; w += hesslag_sp_.nnz();
     }
