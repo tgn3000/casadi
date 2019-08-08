@@ -19,6 +19,8 @@ if(IPOPT_LIBRARIES)
   endif(APPLE)
 endif(IPOPT_LIBRARIES)
 
+list(REMOVE_ITEM IPOPT_LIBRARIES coinhsl)
+
 # Callback support
 if(IPOPT_INCLUDEDIR)
   if(EXISTS ${IPOPT_INCLUDEDIR}/IpIpoptData.hpp AND EXISTS ${IPOPT_INCLUDEDIR}/IpOrigIpoptNLP.hpp AND EXISTS ${IPOPT_INCLUDEDIR}/IpTNLPAdapter.hpp  AND EXISTS ${IPOPT_INCLUDEDIR}/IpDenseVector.hpp AND EXISTS ${IPOPT_INCLUDEDIR}/IpExpansionMatrix.hpp)
@@ -30,6 +32,25 @@ if(IPOPT_INCLUDEDIR)
   endif()
 endif(IPOPT_INCLUDEDIR)
 
+# learn from SymEngine and FindMPFR.cmake
+include(LibFindMacros)
+libfind_library_with_path(ipopt         ipopt ${CMAKE_INSTALL_PREFIX}/include)
+libfind_include_with_path(IpoptConfig.h ipopt ${CMAKE_INSTALL_PREFIX}/include/coin)
+set(IPOPT_LIBRARIES     ${IPOPT_LIBRARY})
+set(IPOPT_INCLUDE_DIRS  ${IPOPT_INCLUDE_DIR})
+if(IPOPT_INCLUDE_DIR)
+  # Set IPOPT_VERSION
+  file(READ "${IPOPT_INCLUDE_DIR}/IpoptConfig.h" _ipopt_version_header)
+  string(REGEX MATCH "define[ \t]+IPOPT_VERSION_MAJOR[ \t]+([0-9]+)" _ipopt_major_version_match "${_ipopt_version_header}")
+  set(IPOPT_MAJOR_VERSION "${CMAKE_MATCH_1}")
+  string(REGEX MATCH "define[ \t]+IPOPT_VERSION_MINOR[ \t]+([0-9]+)" _ipopt_minor_version_match "${_ipopt_version_header}")
+  set(IPOPT_MINOR_VERSION "${CMAKE_MATCH_1}")
+  string(REGEX MATCH "define[ \t]+IPOPT_VERSION_RELEASE[ \t]+([0-9]+)" _ipopt_release_version_match "${_ipopt_version_header}")
+  set(IPOPT_RELEASE_VERSION "${CMAKE_MATCH_1}")
+  set(IPOPT_VERSION ${IPOPT_MAJOR_VERSION}.${IPOPT_MINOR_VERSION}.${IPOPT_RELEASE_VERSION})
+endif()
+
 # Set standard flags
 include(FindPackageHandleStandardArgs)
 find_package_handle_standard_args(IPOPT DEFAULT_MSG IPOPT_LIBRARIES IPOPT_INCLUDE_DIRS)
+mark_as_advanced(IPOPT_LIBRARY IPOPT_INCLUDE_DIR)
